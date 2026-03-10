@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Padhu ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+    content:'';
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background:url('img/p6.jpg') center/cover no-repeat;
+    z-index:-2;
+}
+
+/* BLUR OVERLAY */
+.blur-overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(8px);
+    z-index:-1;
+    pointer-events:none;
+    transition:0.5s;
+}
+
+/* FLOATING HEARTS */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation:floatUp 6s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    transition:0.5s;
+}
+
+.hidden{
+    opacity:0;
+    pointer-events:none;
+}
+
+.blur-page{
+    filter:blur(8px);
+}
+
+/* PAGE 1 */
+#page1 h1{
+    font-size:clamp(26px,6vw,46px);
+    text-shadow:0 0 20px #ff4da6;
+}
+#page1 h2{
+    font-size:clamp(16px,4vw,22px);
+    margin-bottom:30px;
+}
+
+.btn{
+    padding:12px 25px;
+    font-size:clamp(14px,4vw,18px);
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#yes1{background:#ff3366;color:white;}
+#no1{background:black;color:white;position:relative;}
+
+/* PAGE 2 */
+#page2 h2{
+    font-size:clamp(20px,5vw,26px);
+    max-width:700px;
+}
+#okBtn{
+    background:#ff3366;
+    color:white;
+}
+#okBtn:disabled{
+    background:gray;
+}
+
+/* PAGE 3 */
+#page3{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    padding:60px 20px 120px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    align-items:flex-start;
+    text-align:left;
+    color:white;
+}
+
+#page3 img{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+}
+
+#finalText{
+    width:50%;
+    font-size:clamp(16px,3vw,25px);
+    line-height:1.8;
+}
+
+#finalMsg{
+    font-weight:bold;
+    font-size:clamp(16px,4vw,20px);
+}
+
+#noTextAfterHover{
+    display:none;
+    font-weight:bold;
+    font-size:clamp(16px,4vw,20px);
+    color:black;
+}
+
+#proposalBtns{
+    display:flex;
+    gap:10px;
+}
+
+#proposalBtns .btn{
+    background:#ff3366;
+    color:white;
+}
+
+#reject{
+    background:black !important;
+}
+
+#happyMessage{
+    display:none;
+    margin-top:40px;
+    width:100%;
+    text-align:center;
+}
+
+#loveParagraph{
+    font-size:clamp(18px,4vw,26px);
+    line-height:1.9;
+    margin-bottom:25px;
+    font-weight:500;
+    color:black;
+    text-shadow:0 0 15px rgba(255,0,100,0.6);
+}
+
+#valentineTitle{
+    font-size:clamp(28px,6vw,50px);
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 20px #ff3366;
+}
+
+/* POPUP */
+/* POPUP */
+#finalPopup{
+    position:fixed;
+    top:15%;
+    left:50%;
+    transform:translateX(-50%);
+    padding:30px;
+    border-radius:20px;
+    font-size:16px;
+    z-index:9999;
+    display:none;
+    width:90%;
+    max-width:420px;
+    background:black;   /* Plain black background */
+    color:white;
+    box-shadow:0 0 40px rgba(255,0,100,0.6);
+}
+
+
+
+
+
+@media(max-width:768px){
+    #finalText{
+        width:100%;
+    }
+    #proposalBtns{
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="blur-overlay" id="blurLayer"></div>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+    <h1>Padhu, Will You Be My Valentine? ❤️</h1>
+    <h2>YES cheppalo NO cheppalo theliyatledhaa... ithe first NO button ni velli pattukooo...pattukundaam ante dorakkunda paaripothundaa....ithe 😜</h2>
+    <div>
+        <button id="yes1" class="btn">Yes 💖</button>
+        <button id="no1" class="btn">No 😜</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page hidden">
+    <h2>
+        hloo kangaru ipoku... naalo vibrations yekkuvaipoyay..andhuke neeku konni vibrations pampinchaanu.....vibrations vachaay kadaaa marii inkendhuku alochistunnav velli 'okay' ni hug chesukoooo... 😌
+    </h2>
+    <button id="okBtn" class="btn" disabled>OKAY 😌</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page hidden">
+
+    <img src="img/p6.jpg">
+
+    <div id="finalText">
+        🌿 Vanavaaasam inaa parledhu ani Seetha Raamuni pakkana nadichindhi...<br>
+        🔱 Paarvathi prema kosam Shivudu vairagyam vadilesi Ardhanaariswarudu ayyadu...<br>
+        🎻 Krishnudu Raathalo leni Radhanu lokam kosam vadilesina, hrudayam lo yeppudu vadalledhu...<br>
+        🗡️ Yudhalu, vanavaasalu, kastaalu anniti madhyalo Arjunudi chenthane nilichindhi Droupathi... 👑<br><br>
+
+        <strong>
+            Nuv yevarilaaa unnaa kudaa.nee pakkana nenu untaanu....
+            nuvvu untavaa? 💖🔥
+        </strong>
+    </div>
+
+    <div id="finalMsg">
+        Please Padhu oppukovachu kadaa.... 😇  
+        Oppukokapothe neeku dammunte 'No' meeda cheyyi vesi chudu 😜
+    </div>
+
+    <div id="noTextAfterHover">
+       Yendhuku kottav No ni alaa miss ipoyindhi....Sarle inka okate option undhi thattey dannni....
+    </div>
+
+    <div id="proposalBtns">
+        <button id="accept" class="btn">Yes 💍</button>
+        <button id="reject" class="btn">No 😜</button>
+    </div>
+
+    <div id="happyMessage">
+        <div id="loveParagraph">
+        Aksharam antoo raayadam modhalu pedithe adhi nee thone padhu......
+        Alaanti aksharaalu chaalane raasanu....
+        Inkaa raastoone unnnanu......
+        naa life lo yemainaaa sampaadinchochemo kaani nenu yeppatiki sampadinchaleni aasthi...padhu.....
+        i la la la my ardha ratri rendu gantala oxygen...
+        </div>
+
+        <div id="valentineTitle">
+        ❤️🌹 Happy Valentine’s Day Padhu 🌹❤️
+        </div>
+    </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="finalPopup">
+    <h3>💖 Padhu said YES! 💖</h3>
+   <p>
+<span style="color:sand;font-weight:bold;">😏 Vijju : yenti blusing movement ahh?...</span><br><br>
+
+<span style="color:#FFBF00;font-weight:bold;">🙈 Padhu :aha alaa am ledhu andi...</span><br><br>
+
+<span style="color:sand;font-weight:bold;">😄 Vijju :Nakendhuko konchem navvuthunnattu anipistundhe ?....</span><br><br>
+
+<span style="color:#FFBF00;font-weight:bold;">😊 Padhu :Haa andi Konchem.....</span><br><br>
+
+<span style="color:sand;font-weight:bold;">❤️ Vijju : padhu ki inkaaa yekkuvaga & chaala chaala love you❤️... boledenni chocolattulu🍫.... chaala giftulu.... and padhu ki ivee maa mudhulu....</span> 💋<br><br>
+
+<span style="color:#FFBF00;font-weight:bold;">🙈 Padhu : Baaaboiii am cheppali ippudu....simple gaa close kotteddam.....</span>
+</p>
+
+    <button style="color:sand,background:pink;border-radius:5px" onclick="closeFinalPopup()">Close</button>
+</div>
+
+<script>
+
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const page3=document.getElementById("page3");
+const finalPopup=document.getElementById("finalPopup");
+const okBtn=document.getElementById("okBtn");
+const happyMessage=document.getElementById("happyMessage");
+const reject=document.getElementById("reject");
+const noTextAfterHover=document.getElementById("noTextAfterHover");
+const blurLayer=document.getElementById("blurLayer");
+
+function move(btn){
+    btn.style.position="absolute";
+    btn.style.left=Math.random()*(window.innerWidth-100)+"px";
+    btn.style.top=Math.random()*(window.innerHeight-50)+"px";
+}
+
+document.getElementById("no1").onmouseover=
+document.getElementById("no1").ontouchstart=function(){move(this);}
+
+document.getElementById("yes1").onclick=function(){
+    page1.classList.add("hidden");
+    page2.classList.remove("hidden");
+    if(navigator.vibrate){ navigator.vibrate(5000); }
+    setTimeout(()=>{ okBtn.disabled=false; },5000);
+}
+
+okBtn.onclick=function(){
+    page2.classList.add("hidden");
+    page3.classList.remove("hidden");
+}
+
+reject.onmouseover=reject.ontouchstart=function(){
+    this.style.display="none";
+    noTextAfterHover.style.display="block";
+}
+
+document.getElementById("accept").onclick=function(){
+    finalPopup.style.display="block";
+    page3.classList.add("blur-page");
+}
+
+function closeFinalPopup(){
+    finalPopup.style.display="none";
+    page3.classList.remove("blur-page");
+
+    document.getElementById("finalText").style.display="none";
+    document.getElementById("finalMsg").style.display="none";
+    document.getElementById("proposalBtns").style.display="none";
+    noTextAfterHover.style.display="none";
+
+    happyMessage.style.display="block";
+
+    blurLayer.style.display="none";
+
+    startHearts();
+}
+
+/* HEART GENERATOR */
+function startHearts(){
+    setInterval(()=>{
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(15+Math.random()*25)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{heart.remove();},6000);
+    },300);
+}
+</script>
+
+</body>
+</html>
