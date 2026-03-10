@@ -5,28 +5,42 @@
 <title>Birthday Surprise</title>
 
 <style>
+
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
 height:100vh;
 overflow:hidden;
-background:url('img/p6.jpg') center/cover no-repeat;
 color:white;
 }
 
-/* floating hearts */
-.heart{
+/* BACKGROUND IMAGE */
+
+body::before{
+content:'';
 position:fixed;
-bottom:-20px;
-font-size:20px;
-animation:floatUp 6s linear forwards;
-pointer-events:none;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url('img/p6.jpg') center/cover no-repeat;
+z-index:-2;
 }
 
-@keyframes floatUp{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-100vh);opacity:0;}
+/* DARK OVERLAY */
+
+body::after{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+z-index:-1;
 }
+
+/* PAGE LAYOUT */
 
 .page{
 position:absolute;
@@ -51,6 +65,18 @@ h1,h2{
 max-width:700px;
 }
 
+/* TEXT BOX */
+
+.textBox{
+background:rgba(0,0,0,0.75);
+padding:30px;
+border-radius:15px;
+line-height:1.6;
+box-shadow:0 0 20px rgba(0,0,0,0.7);
+}
+
+/* BUTTON STYLE */
+
 .btn{
 padding:12px 25px;
 font-size:18px;
@@ -60,18 +86,54 @@ cursor:pointer;
 margin:10px;
 }
 
-.yes{background:#ff3366;color:white;}
-.no{background:black;color:white;}
+.yes{
+background:#ff3366;
+color:white;
+}
+
+.no{
+background:black;
+color:white;
+}
+
+/* PAGE 3 */
 
 #page3{
 flex-direction:column;
 gap:30px;
 }
 
+/* FINAL MESSAGE BOX */
+
 #finalText{
-font-size:24px;
+font-size:26px;
 font-weight:bold;
+background:rgba(0,0,0,0.7);
+padding:35px;
+border-radius:18px;
+box-shadow:0 0 25px rgba(255,0,100,0.6);
 text-shadow:0 0 15px #ff3366;
+}
+
+/* FLOATING HEARTS */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 6s linear forwards;
+pointer-events:none;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-100vh);
+opacity:0;
+}
 }
 
 </style>
@@ -80,32 +142,53 @@ text-shadow:0 0 15px #ff3366;
 <body>
 
 <!-- PAGE 1 -->
+
 <div id="page1" class="page">
+
+<div class="textBox">
+
 <h2>
-Hi Mr. Venkat idhi Dhanya pampinchindhi naaku. naku teliyadhu mari yendhuko no meeda click chey annadhi. 
-No click chestunte miss ipothundhaa?...adhi Bug Venkat fix cheyyaledha inkaa... 
+Hi Mr. Venkat idhi Dhanya pampinchindhi naaku.
+naku teliyadhu mari yendhuko no meeda click chey annadhi.
+
+No click chestunte miss ipothundhaa?...
+adhi Bug Venkat fix cheyyaledha inkaa...
+
 sarey Build Ivvali yes kottu
 </h2>
+
+</div>
 
 <div>
 <button id="yes1" class="btn yes">Yes</button>
 <button id="no1" class="btn no">No</button>
 </div>
+
 </div>
 
+
 <!-- PAGE 2 -->
+
 <div id="page2" class="page hidden">
 
+<div class="textBox">
+
 <h2>
-Hi Venkat Bro Iam Bala. client requires vibration effect.  
-i think its work in some mobiles and its not work in some mobiles  
-so can you please fix this.  
+Hi Venkat Bro Iam Bala. client requires vibration effect.
 
-and if you get vibration then click on No button.  
+i think its work in some mobiles and its not work in some mobiles
+so can you please fix this.
 
-Hooo sry sry Yes button is not working bro i will add ticket in jeera for that  
-and assign to you. now you click on No.
+and if you get vibration then click on No button.
+
+Hooo sry sry Yes button is not working bro
+i will add ticket in jeera for that
+and assign to you.
+
+now you click on No.
 </h2>
+
+</div>
 
 <div>
 <button id="yes2" class="btn yes">Yes</button>
@@ -114,7 +197,9 @@ and assign to you. now you click on No.
 
 </div>
 
+
 <!-- PAGE 3 -->
+
 <div id="page3" class="page hidden">
 
 <div id="finalText">
@@ -137,6 +222,7 @@ btn.style.top=Math.random()*(window.innerHeight-50)+"px"
 }
 
 /* PAGE 1 */
+
 document.getElementById("no1").onmouseover=
 document.getElementById("no1").ontouchstart=function(){
 move(this)
@@ -164,7 +250,7 @@ page3.classList.remove("hidden")
 startHearts()
 }
 
-/* hearts */
+/* HEARTS */
 
 function startHearts(){
 
